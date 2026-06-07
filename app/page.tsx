@@ -1,65 +1,214 @@
-import Image from "next/image";
+import { Navbar } from "@/components/navigation/Navbar";
+import { experience, services } from "@/data/projects";
+import { socials } from "@/data/socials";
+
+const heroVideo = "/videos/hero/portfolio-overview-loop.mp4";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="min-h-screen bg-black text-white">
+      <Navbar />
+
+      <section id="reel" className="px-4 pb-16 pt-32 md:px-8">
+        <div className="mx-auto max-w-[118rem]">
+          <div className="relative min-h-[78vh] overflow-hidden rounded-[2rem] bg-zinc-950 shadow-2xl shadow-black/50 md:min-h-[84vh]">
+            <video
+              className="absolute inset-0 h-full w-full object-cover opacity-95"
+              src={heroVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+            <div className="absolute inset-0 rounded-[2rem] ring-1 ring-white/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/5" />
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="border-b border-zinc-900 px-6 pb-28 pt-8">
+        <div className="mx-auto max-w-6xl text-center">
+          <h1 className="text-[5.8rem] font-black uppercase leading-[0.8] tracking-[-0.09em] md:text-[10rem] lg:text-[13rem]">
+            Emanuel
+          </h1>
+
+          <div className="mt-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-2xl font-black uppercase tracking-[-0.04em] text-zinc-100 md:text-4xl">
+            <span>Character TD</span>
+            <span>Pipeline TD</span>
+            <span>Technical Animator</span>
+          </div>
+
+          <p className="mx-auto mt-8 max-w-5xl text-2xl font-medium leading-tight text-zinc-300 md:text-5xl">
+            Production-ready rigging, technical animation and pipeline development
+            for games, animation and real-time workflows.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-5 text-sm font-bold text-zinc-500">
+            {socials.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="uppercase tracking-[0.2em] transition hover:text-[#45C7C5]"
+              >
+                {social.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="border-b border-zinc-900 px-6 py-28">
+        <div className="mx-auto max-w-[96rem]">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#45C7C5]">
+              Choose a Discipline
+            </p>
+
+            <h2 className="mt-5 text-7xl font-black tracking-[-0.065em] md:text-9xl">
+              Services
+            </h2>
+
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-zinc-400">
+              Go straight into the area you want to review. Each discipline opens
+              as its own focused page with large videos, short descriptions and
+              the most relevant projects.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-7 md:grid-cols-3">
+            {services.map((service, index) => (
+              <a
+                key={service.title}
+                href={service.href}
+                className="group relative min-h-[34rem] overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-950 p-8 transition hover:-translate-y-1 hover:border-[#45C7C5]/70 hover:shadow-2xl hover:shadow-[#45C7C5]/10"
+              >
+                <video
+                  className="absolute inset-0 h-full w-full object-cover opacity-24 transition duration-500 group-hover:scale-105 group-hover:opacity-42"
+                  src={service.mediaLoop}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/20" />
+
+                <div className="relative z-10 flex h-full flex-col justify-end">
+                  <p className="text-sm text-zinc-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+
+                  <h3 className="mt-4 whitespace-pre-line text-5xl font-black leading-none tracking-[-0.06em]">
+                    {service.title}
+                  </h3>
+
+                  <p className="mt-5 text-sm leading-relaxed text-zinc-300">
+                    {service.description}
+                  </p>
+
+                  <p className="mt-8 text-sm font-bold uppercase tracking-[0.2em] text-[#67D7D5]">
+                    Open Discipline →
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="border-b border-zinc-900 px-6 py-28">
+        <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+              TA Services
+            </p>
+
+            <h2 className="mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
+              What I offer
+            </h2>
+          </div>
+
+          <div className="space-y-7 text-lg leading-relaxed text-zinc-300">
+            <p>
+              I support teams with production-ready character rigs, technical
+              animation workflows and pipeline tools designed to move assets
+              faster through production.
+            </p>
+
+            <p>
+              My work focuses on clean deformation, animator-friendly controls,
+              validation systems, batch workflows and real-time technical
+              solutions that connect art, animation and engineering.
+            </p>
+
+            <p>
+              I can integrate into an existing production team as Character TD,
+              Pipeline TD or Technical Animator, helping reduce manual work,
+              improve consistency and deliver game-ready results with a clear
+              technical structure.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+                <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
+                  01
+                </p>
+                <p className="mt-3 text-xl font-black text-white">
+                  Pipeline Setup & Tooling
+                </p>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+                <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
+                  02
+                </p>
+                <p className="mt-3 text-xl font-black text-white">
+                  Character Rigging & Skinning
+                </p>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+                <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
+                  03
+                </p>
+                <p className="mt-3 text-xl font-black text-white">
+                  Technical Animation
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" className="border-t border-zinc-900 px-6 py-28">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+            Experience
+          </p>
+
+          <h2 className="mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
+            Production background
+          </h2>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            {experience.map((job) => (
+              <article
+                key={`${job.studio}-${job.period}`}
+                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6"
+              >
+                <p className="text-sm text-zinc-500">{job.period}</p>
+                <h3 className="mt-3 text-2xl font-bold">{job.studio}</h3>
+                <p className="mt-2 text-[#45C7C5]">{job.role}</p>
+                <p className="mt-4 leading-relaxed text-zinc-400">
+                  {job.summary}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
