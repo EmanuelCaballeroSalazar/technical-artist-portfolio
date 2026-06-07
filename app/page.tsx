@@ -122,11 +122,11 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
-              TA Services
+              Technical Art Solutions
             </p>
 
             <h2 className="mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
-              What I offer
+              What I Offer
             </h2>
           </div>
 

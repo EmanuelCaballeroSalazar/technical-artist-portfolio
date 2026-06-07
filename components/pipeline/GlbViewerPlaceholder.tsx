@@ -81,6 +81,8 @@ type ModelViewerProps =
     "interaction-prompt"?: "auto" | "none" | "when-focused";
   };
 
+const ASSET_VERSION = "portfolio-pipeline-asset";
+
 const ModelViewer = React.forwardRef<ModelViewerElement, ModelViewerProps>(
   function ModelViewerComponent(props, ref) {
     return React.createElement("model-viewer", {
@@ -166,6 +168,14 @@ function getBaseNameFromModelFilename(modelFilename: string) {
   const extensionIndex = filename.lastIndexOf(".");
 
   return extensionIndex >= 0 ? filename.slice(0, extensionIndex) : filename;
+}
+
+function getVersionedAssetPath(path: string) {
+  if (!path) {
+    return "";
+  }
+
+  return `${path}?v=${ASSET_VERSION}`;
 }
 
 function getGlbPathFromPackageDescription(packageDescription: PackageDescription | null) {
@@ -383,7 +393,7 @@ async function fetchPackageDescription(path: string) {
   try {
     const url = new URL(path, window.location.origin);
 
-    url.searchParams.set("v", "portfolio-pipeline-asset");
+    url.searchParams.set("v", ASSET_VERSION);
 
     const response = await fetch(url.toString(), {
       cache: "no-store",
@@ -438,6 +448,7 @@ export function GlbViewerPlaceholder() {
   );
 
   const glbPath = getGlbPathFromPackageDescription(packageDescription);
+  const glbSrc = getVersionedAssetPath(glbPath);
   const glbName = glbPath.split("/").pop() || "Waiting for GLB";
   const currentMode =
     viewerModes.find((mode) => mode.id === activeMode) ?? viewerModes[0];
@@ -510,7 +521,8 @@ export function GlbViewerPlaceholder() {
           {glbPath ? (
             <ModelViewer
               ref={modelViewerRef}
-              src={glbPath}
+              src={glbSrc}
+              onError={() => setErrorMessage(`Unable to load ${glbPath}`)}
               alt={glbName}
               camera-controls
               auto-rotate={activeMode !== "animation"}
@@ -526,7 +538,7 @@ export function GlbViewerPlaceholder() {
               className="h-[26rem] w-full md:h-[34rem]"
             />
           ) : (
-            <div className="flex h-[26rem] items-center md:h-[34rem]" justify-center p-8 text-center text-zinc-500">
+            <div className="flex h-[26rem] items-center justify-center p-8 text-center text-zinc-500 md:h-[34rem]">
               {errorMessage || "Loading package_description.json..."}
             </div>
           )}

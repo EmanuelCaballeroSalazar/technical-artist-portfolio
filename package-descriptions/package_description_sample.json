@@ -1,0 +1,227 @@
+{
+    "Models": [
+        {
+            "Filename": "meshes/rec_soup_Cioppino.fbx",
+            "Nodes": [
+                {
+                    "Path": "/Cioppino",
+                    "IsMesh": true,
+                    "Visible": true
+                },
+                {
+                    "Path": "/Liquid",
+                    "IsMesh": true,
+                    "Visible": true
+                }
+            ],
+            "Materials": [
+                {
+                    "Name": "rec_entree_Cioppino_mat",
+                    "PbrParameters": {
+                        "BaseWeight": null,
+                        "BaseColor": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_entree_Cioppino_mat/rec_entree_Cioppino_mat_BaseColor.png",
+                                    "Channels": [
+                                        "R",
+                                        "G",
+                                        "B"
+                                    ],
+                                    "Inverted": false
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "BaseMetalness": null,
+                        "BaseDiffuseRoughness": null,
+                        "SpecularWeight": null,
+                        "SpecularColor": null,
+                        "SpecularRoughness": null,
+                        "SpecularRoughnessAnisotropy": null,
+                        "SpecularIor": null,
+                        "TransmissionWeight": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_entree_Cioppino_mat/rec_entree_Cioppino_Transmissive.png",
+                                    "Channels": [
+                                        "R"
+                                    ],
+                                    "Inverted": false
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "TransmissionColor": null,
+                        "TransmissionDepth": null,
+                        "TransmissionScatter": null,
+                        "TransmissionScatterAnisotropy": null,
+                        "TransmissionDispersionScale": null,
+                        "TransmissionDispersionAbbeNumber": null,
+                        "SubsurfaceWeight": null,
+                        "SubsurfaceColor": null,
+                        "SubsurfaceRadius": null,
+                        "SubsurfaceRadiusScale": null,
+                        "SubsurfaceScatterAnisotropy": null,
+                        "CoatWeight": null,
+                        "CoatColor": null,
+                        "CoatRoughness": null,
+                        "CoatRoughnessAnisotropy": null,
+                        "CoatIor": null,
+                        "CoatDarkening": null,
+                        "FuzzWeight": null,
+                        "FuzzColor": null,
+                        "FuzzRoughness": null,
+                        "EmissionLuminance": null,
+                        "EmissionColor": null,
+                        "ThinFilmWeight": null,
+                        "ThinFilmThickness": null,
+                        "ThinFilmIor": null,
+                        "GeometryOpacity": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_entree_Cioppino_mat/rec_entree_Cioppino_Transmissive.png",
+                                    "Channels": [
+                                        "R"
+                                    ],
+                                    "Inverted": true
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "GeometryThinWalled": null,
+                        "GeometryNormal": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_entree_Cioppino_mat/rec_entree_Cioppino_Normal.png",
+                                    "Channels": [
+                                        "R",
+                                        "G",
+                                        "B"
+                                    ],
+                                    "Inverted": false
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "GeometryTangent": null,
+                        "GeometryCoatNormal": null,
+                        "GeometryCoatTangent": null
+                    },
+                    "MiscParameters": {
+                        "AmbientOcclusion": null,
+                        "UtilityMask": null
+                    }
+                },
+                {
+                    "Name": "rec_soup_Cioppino_mat",
+                    "PbrParameters": {
+                        "BaseWeight": null,
+                        "BaseColor": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_soup_Cioppino_mat/rec_soup_Cioppino_mat_BaseColor.png",
+                                    "Channels": [
+                                        "R",
+                                        "G",
+                                        "B"
+                                    ],
+                                    "Inverted": false
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "BaseMetalness": null,
+                        "BaseDiffuseRoughness": null,
+                        "SpecularWeight": null,
+                        "SpecularColor": null,
+                        "SpecularRoughness": null,
+                        "SpecularRoughnessAnisotropy": null,
+                        "SpecularIor": null,
+                        "TransmissionWeight": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_soup_Cioppino_mat/rec_soup_Cioppino_mat_Opacity.png",
+                                    "Channels": [
+                                        "L"
+                                    ],
+                                    "Inverted": true
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "TransmissionColor": null,
+                        "TransmissionDepth": null,
+                        "TransmissionScatter": null,
+                        "TransmissionScatterAnisotropy": null,
+                        "TransmissionDispersionScale": null,
+                        "TransmissionDispersionAbbeNumber": null,
+                        "SubsurfaceWeight": null,
+                        "SubsurfaceColor": null,
+                        "SubsurfaceRadius": null,
+                        "SubsurfaceRadiusScale": null,
+                        "SubsurfaceScatterAnisotropy": null,
+                        "CoatWeight": null,
+                        "CoatColor": null,
+                        "CoatRoughness": null,
+                        "CoatRoughnessAnisotropy": null,
+                        "CoatIor": null,
+                        "CoatDarkening": null,
+                        "FuzzWeight": null,
+                        "FuzzColor": null,
+                        "FuzzRoughness": null,
+                        "EmissionLuminance": null,
+                        "EmissionColor": null,
+                        "ThinFilmWeight": null,
+                        "ThinFilmThickness": null,
+                        "ThinFilmIor": null,
+                        "GeometryOpacity": {
+                            "Textures": [
+                                {
+                                    "Filename": "textures/rec_soup_Cioppino_mat/rec_soup_Cioppino_mat_Opacity.png",
+                                    "Channels": [
+                                        "L"
+                                    ],
+                                    "Inverted": false
+                                }
+                            ],
+                            "Values": []
+                        },
+                        "GeometryThinWalled": null,
+                        "GeometryNormal": null,
+                        "GeometryTangent": null,
+                        "GeometryCoatNormal": null,
+                        "GeometryCoatTangent": null
+                    },
+                    "MiscParameters": {
+                        "AmbientOcclusion": null,
+                        "UtilityMask": null
+                    }
+                }
+            ],
+            "Lods": [
+                {
+                    "Index": 0,
+                    "Shapes": [
+                        "/Cioppino",
+                        "/Liquid"
+                    ],
+                    "VtxCount": 12501,
+                    "TriCount": 24335,
+                    "Aabb": {
+                        "MinX": -9.80430222,
+                        "MinY": 2.77855816,
+                        "MinZ": -9.81166458,
+                        "MaxX": 9.80904579,
+                        "MaxY": 8.48470898,
+                        "MaxZ": 9.84231358,
+                        "Width": 19.61334801,
+                        "Height": 5.70615082,
+                        "Depth": 19.65397816
+                    }
+                }
+            ],
+            "ShapeVariants": []
+        }
+    ]
+}
