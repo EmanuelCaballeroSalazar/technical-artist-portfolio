@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { fallbackPackageDescription } from "@/data/pipelines/fallback-package-description";
 import {
   gameReadyPipeline,
   type PipelineTreeNode,
@@ -219,9 +220,20 @@ export function FolderTreePreview() {
   ]);
 
   useEffect(() => {
+    let isMounted = true;
+
     async function loadPackageDescription() {
       try {
-        const response = await fetch(gameReadyPipeline.packageDescriptionPath);
+        const url = new URL(
+          gameReadyPipeline.packageDescriptionPath,
+          window.location.origin,
+        );
+
+        url.searchParams.set("v", "portfolio-pipeline-asset");
+
+        const response = await fetch(url.toString(), {
+          cache: "no-store",
+        });
 
         if (!response.ok) {
           throw new Error(
@@ -231,20 +243,23 @@ export function FolderTreePreview() {
 
         const data = (await response.json()) as PackageDescription;
 
-        setFolderTree(buildDynamicFolderTree(data));
-      } catch (error) {
-        console.error(error);
-        setFolderTree([
-          {
-            name: "Package Description Missing",
-            defaultOpen: true,
-            children: [{ name: "package_description.json" }],
-          },
-        ]);
+        if (isMounted) {
+          setFolderTree(buildDynamicFolderTree(data));
+        }
+      } catch {
+        if (isMounted) {
+          setFolderTree(
+            buildDynamicFolderTree(fallbackPackageDescription as PackageDescription),
+          );
+        }
       }
     }
 
     loadPackageDescription();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

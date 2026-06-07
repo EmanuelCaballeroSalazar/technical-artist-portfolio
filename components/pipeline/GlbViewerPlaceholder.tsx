@@ -2,6 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+import { fallbackPackageDescription } from "@/data/pipelines/fallback-package-description";
 import { gameReadyPipeline } from "@/data/pipelines/game-ready-pipeline";
 
 type ViewerMode =
@@ -377,6 +378,27 @@ function StatisticsPanel({
   );
 }
 
+
+async function fetchPackageDescription(path: string) {
+  try {
+    const url = new URL(path, window.location.origin);
+
+    url.searchParams.set("v", "portfolio-pipeline-asset");
+
+    const response = await fetch(url.toString(), {
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Unable to load ${path}`);
+    }
+
+    return (await response.json()) as PackageDescription;
+  } catch {
+    return fallbackPackageDescription as PackageDescription;
+  }
+}
+
 export function GlbViewerPlaceholder() {
   const { packageDescriptionPath } = gameReadyPipeline;
 
@@ -392,23 +414,22 @@ export function GlbViewerPlaceholder() {
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    let isMounted = true;
+
     async function loadPackageDescription() {
-      try {
-        const response = await fetch(packageDescriptionPath);
+      const data = await fetchPackageDescription(packageDescriptionPath);
 
-        if (!response.ok) {
-          throw new Error(`Unable to load ${packageDescriptionPath}`);
-        }
-
-        const data = (await response.json()) as PackageDescription;
-
+      if (isMounted) {
         setPackageDescription(data);
-      } catch (error) {
-        setErrorMessage(error instanceof Error ? error.message : "Unknown error");
+        setErrorMessage("");
       }
     }
 
     loadPackageDescription();
+
+    return () => {
+      isMounted = false;
+    };
   }, [packageDescriptionPath]);
 
   const textureList = useMemo(
@@ -502,10 +523,10 @@ export function GlbViewerPlaceholder() {
               interaction-prompt="none"
               camera-orbit={currentMode.cameraOrbit}
               field-of-view={currentMode.fieldOfView}
-              className="h-[34rem] w-full"
+              className="h-[26rem] w-full md:h-[34rem]"
             />
           ) : (
-            <div className="flex h-[34rem] items-center justify-center p-8 text-center text-zinc-500">
+            <div className="flex h-[26rem] items-center md:h-[34rem]" justify-center p-8 text-center text-zinc-500">
               {errorMessage || "Loading package_description.json..."}
             </div>
           )}
