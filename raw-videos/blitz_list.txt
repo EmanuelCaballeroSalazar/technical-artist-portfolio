@@ -1,4 +1,0 @@
-file 'Blitz Guide.mp4'
-file 'Blitz Joints.mp4'
-file 'Blitz Controlrig.mp4'
-file 'Blitz Geometry.mp4'

@@ -1,2 +1,0 @@
-file 'Scout Controlrig.mp4'
-file 'Scout Joints.mp4'
