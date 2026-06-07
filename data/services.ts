@@ -46,7 +46,7 @@ export const services = [
 export const servicePages = [
   {
     slug: "pipeline-tools",
-    eyebrow: "Service 01",
+    eyebrow: "Pipeline TD",
     title: "Pipeline Setup & Tooling",
     description:
       "Python automation, Maya tooling and asset validation workflows designed to improve production efficiency, consistency and delivery.",
@@ -75,7 +75,7 @@ export const servicePages = [
   },
   {
     slug: "character-td-rigging",
-    eyebrow: "Service 02",
+    eyebrow: "Character TD",
     title: "Character Rigging & Skinning",
     description:
       "Production-ready character and creature rigs built with Maya, mGear and custom rigging workflows focused on deformation quality, animator-friendly controls and scalable production pipelines.",
@@ -132,7 +132,7 @@ export const servicePages = [
   },
   {
     slug: "technical-animator",
-    eyebrow: "Service 03",
+    eyebrow: "Technical Animator",
     title: "Technical Animation",
     description:
       "Bridging rigging, animation and engine implementation through Control Rig, animation systems and production-ready technical animation workflows.",
