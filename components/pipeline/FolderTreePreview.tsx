@@ -17,8 +17,8 @@ type PackageParameter = {
 };
 
 type PackageMaterial = {
-  PbrParameters?: Record<string, PackageParameter | null>;
-  MiscParameters?: Record<string, PackageParameter | null>;
+  PbrParameters?: Readonly<Record<string, PackageParameter | null>>;
+  MiscParameters?: Readonly<Record<string, PackageParameter | null>>;
 };
 
 type PackageModel = {
@@ -249,7 +249,7 @@ export function FolderTreePreview() {
       } catch {
         if (isMounted) {
           setFolderTree(
-            buildDynamicFolderTree(fallbackPackageDescription as unknown as PackageDescription),
+            buildDynamicFolderTree(fallbackPackageDescription),
           );
         }
       }

@@ -31,8 +31,8 @@ type PackageParameter = {
 
 type PackageMaterial = {
   Name?: string;
-  PbrParameters?: Record<string, PackageParameter | null>;
-  MiscParameters?: Record<string, PackageParameter | null>;
+  PbrParameters?: Readonly<Record<string, PackageParameter | null>>;
+  MiscParameters?: Readonly<Record<string, PackageParameter | null>>;
 };
 
 type PackageLod = {
@@ -405,7 +405,7 @@ async function fetchPackageDescription(path: string) {
 
     return (await response.json()) as PackageDescription;
   } catch {
-    return fallbackPackageDescription as unknown as PackageDescription;
+    return fallbackPackageDescription;
   }
 }
 
@@ -535,15 +535,15 @@ export function GlbViewerPlaceholder() {
               interaction-prompt="none"
               camera-orbit={currentMode.cameraOrbit}
               field-of-view={currentMode.fieldOfView}
-              className="h-[26rem] w-full md:h-[34rem]"
+              className="h-[22rem] w-full sm:h-[26rem] md:h-[34rem]"
             />
           ) : (
-            <div className="flex h-[26rem] items-center justify-center p-8 text-center text-zinc-500 md:h-[34rem]">
+            <div className="flex h-[22rem] items-center justify-center p-8 text-center text-zinc-500 sm:h-[26rem] md:h-[34rem]">
               {errorMessage || "Loading package_description.json..."}
             </div>
           )}
 
-          <div className="pointer-events-none absolute bottom-5 left-5 max-w-md rounded-2xl border border-white/10 bg-black/70 p-4 backdrop-blur-xl">
+          <div className="pointer-events-none m-4 rounded-2xl border border-white/10 bg-black/75 p-4 backdrop-blur-xl md:absolute md:bottom-5 md:left-5 md:m-0 md:max-w-md md:bg-black/70">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#45C7C5]">
               {currentMode.title}
             </p>
