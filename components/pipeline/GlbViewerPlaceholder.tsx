@@ -5,12 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { fallbackPackageDescription } from "@/data/pipelines/fallback-package-description";
 import { gameReadyPipeline } from "@/data/pipelines/game-ready-pipeline";
 
-type ViewerMode =
-  | "asset"
-  | "textures"
-  | "pbr"
-  | "statistics"
-  | "animation";
+type ViewerMode = "asset" | "textures" | "pbr" | "statistics" | "animation";
 
 type TextureInfo = {
   slot: string;
@@ -64,22 +59,24 @@ type ModelViewerElement = HTMLElement & {
   pause?: () => void;
 };
 
-type ModelViewerProps =
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-    src: string;
-    alt: string;
-    "camera-controls"?: boolean;
-    "auto-rotate"?: boolean;
-    autoplay?: boolean;
-    "animation-name"?: string;
-    "shadow-intensity"?: string;
-    exposure?: string;
-    loading?: "auto" | "lazy" | "eager";
-    reveal?: "auto" | "interaction" | "manual";
-    "camera-orbit"?: string;
-    "field-of-view"?: string;
-    "interaction-prompt"?: "auto" | "none" | "when-focused";
-  };
+type ModelViewerProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLElement>,
+  HTMLElement
+> & {
+  src: string;
+  alt: string;
+  "camera-controls"?: boolean;
+  "auto-rotate"?: boolean;
+  autoplay?: boolean;
+  "animation-name"?: string;
+  "shadow-intensity"?: string;
+  exposure?: string;
+  loading?: "auto" | "lazy" | "eager";
+  reveal?: "auto" | "interaction" | "manual";
+  "camera-orbit"?: string;
+  "field-of-view"?: string;
+  "interaction-prompt"?: "auto" | "none" | "when-focused";
+};
 
 const ASSET_VERSION = "portfolio-pipeline-asset";
 
@@ -156,7 +153,10 @@ function getMaterial(packageDescription: PackageDescription | null) {
 }
 
 function getPrimaryModelName(packageDescription: PackageDescription | null) {
-  return getModel(packageDescription)?.Filename ?? "Waiting for package_description.json";
+  return (
+    getModel(packageDescription)?.Filename ??
+    "Waiting for package_description.json"
+  );
 }
 
 function getMaterialName(packageDescription: PackageDescription | null) {
@@ -178,7 +178,9 @@ function getVersionedAssetPath(path: string) {
   return `${path}?v=${ASSET_VERSION}`;
 }
 
-function getGlbPathFromPackageDescription(packageDescription: PackageDescription | null) {
+function getGlbPathFromPackageDescription(
+  packageDescription: PackageDescription | null,
+) {
   const modelFilename = getModel(packageDescription)?.Filename;
 
   if (!modelFilename) {
@@ -388,6 +390,76 @@ function StatisticsPanel({
   );
 }
 
+function ModeTabs({
+  activeMode,
+  isAnimationPlaying,
+  onModeClick,
+}: {
+  activeMode: ViewerMode;
+  isAnimationPlaying: boolean;
+  onModeClick: (mode: ViewerMode) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {viewerModes.map((mode) => {
+        const isActive = activeMode === mode.id;
+        const label =
+          mode.id === "animation" && !isAnimationPlaying ? "Play" : mode.label;
+
+        return (
+          <button
+            key={mode.id}
+            type="button"
+            onClick={() => onModeClick(mode.id)}
+            className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+              isActive
+                ? "border-[#45C7C5] bg-[#45C7C5] text-black"
+                : "border-zinc-700 text-zinc-300 hover:border-[#45C7C5] hover:text-[#45C7C5]"
+            }`}
+          >
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function ModeInfoCard({
+  currentMode,
+  packageDescription,
+}: {
+  currentMode: (typeof viewerModes)[number];
+  packageDescription: PackageDescription | null;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-black/75 p-4 backdrop-blur-xl">
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#45C7C5]">
+        {currentMode.title}
+      </p>
+
+      <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+        {currentMode.description}
+      </p>
+
+      <div className="mt-4 grid gap-2 text-xs text-zinc-500">
+        <p>
+          Model:{" "}
+          <span className="font-mono text-zinc-300">
+            {getPrimaryModelName(packageDescription)}
+          </span>
+        </p>
+
+        <p>
+          Material:{" "}
+          <span className="font-mono text-zinc-300">
+            {getMaterialName(packageDescription)}
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
 
 async function fetchPackageDescription(path: string) {
   try {
@@ -490,29 +562,12 @@ export function GlbViewerPlaceholder() {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {viewerModes.map((mode) => {
-            const isActive = activeMode === mode.id;
-            const label =
-              mode.id === "animation" && !isAnimationPlaying
-                ? "Play"
-                : mode.label;
-
-            return (
-              <button
-                key={mode.id}
-                type="button"
-                onClick={() => handleModeClick(mode.id)}
-                className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
-                  isActive
-                    ? "border-[#45C7C5] bg-[#45C7C5] text-black"
-                    : "border-zinc-700 text-zinc-300 hover:border-[#45C7C5] hover:text-[#45C7C5]"
-                }`}
-              >
-                {label}
-              </button>
-            );
-          })}
+        <div className="hidden md:block">
+          <ModeTabs
+            activeMode={activeMode}
+            isAnimationPlaying={isAnimationPlaying}
+            onModeClick={handleModeClick}
+          />
         </div>
       </div>
 
@@ -535,39 +590,35 @@ export function GlbViewerPlaceholder() {
               interaction-prompt="none"
               camera-orbit={currentMode.cameraOrbit}
               field-of-view={currentMode.fieldOfView}
-              className="h-[22rem] w-full sm:h-[26rem] md:h-[34rem]"
+              className="h-[70svh] min-h-[28rem] w-full sm:h-[32rem] md:h-[34rem]"
             />
           ) : (
-            <div className="flex h-[22rem] items-center justify-center p-8 text-center text-zinc-500 sm:h-[26rem] md:h-[34rem]">
+            <div className="flex h-[70svh] min-h-[28rem] items-center justify-center p-8 text-center text-zinc-500 sm:h-[32rem] md:h-[34rem]">
               {errorMessage || "Loading package_description.json..."}
             </div>
           )}
 
-          <div className="pointer-events-none m-4 rounded-2xl border border-white/10 bg-black/75 p-4 backdrop-blur-xl md:absolute md:bottom-5 md:left-5 md:m-0 md:max-w-md md:bg-black/70">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#45C7C5]">
-              {currentMode.title}
-            </p>
-
-            <p className="mt-2 text-sm leading-relaxed text-zinc-300">
-              {currentMode.description}
-            </p>
-
-            <div className="mt-4 grid gap-2 text-xs text-zinc-500">
-              <p>
-                Model:{" "}
-                <span className="font-mono text-zinc-300">
-                  {getPrimaryModelName(packageDescription)}
-                </span>
-              </p>
-
-              <p>
-                Material:{" "}
-                <span className="font-mono text-zinc-300">
-                  {getMaterialName(packageDescription)}
-                </span>
-              </p>
-            </div>
+          <div className="pointer-events-none absolute bottom-5 left-5 hidden max-w-md md:block">
+            <ModeInfoCard
+              currentMode={currentMode}
+              packageDescription={packageDescription}
+            />
           </div>
+        </div>
+
+        <div className="border-t border-zinc-800 p-4 md:hidden">
+          <ModeTabs
+            activeMode={activeMode}
+            isAnimationPlaying={isAnimationPlaying}
+            onModeClick={handleModeClick}
+          />
+        </div>
+
+        <div className="border-t border-zinc-800 p-4 md:hidden">
+          <ModeInfoCard
+            currentMode={currentMode}
+            packageDescription={packageDescription}
+          />
         </div>
 
         {activeMode === "textures" && <TexturePanel textures={textureList} />}
