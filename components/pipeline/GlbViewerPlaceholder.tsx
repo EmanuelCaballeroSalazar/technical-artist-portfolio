@@ -20,13 +20,13 @@ type TextureInfo = {
 
 type PackageTexture = {
   Filename?: string;
-  Channels?: string[];
+  Channels?: readonly string[];
   Inverted?: boolean;
 };
 
 type PackageParameter = {
-  Textures?: PackageTexture[];
-  Values?: unknown[];
+  Textures?: readonly PackageTexture[];
+  Values?: readonly unknown[];
 };
 
 type PackageMaterial = {
@@ -37,7 +37,7 @@ type PackageMaterial = {
 
 type PackageLod = {
   Index?: number;
-  Shapes?: string[];
+  Shapes?: readonly string[];
   VtxCount?: number;
   TriCount?: number;
 };
@@ -50,13 +50,13 @@ type PackageNode = {
 
 type PackageModel = {
   Filename?: string;
-  Nodes?: PackageNode[];
-  Materials?: PackageMaterial[];
-  Lods?: PackageLod[];
+  Nodes?: readonly PackageNode[];
+  Materials?: readonly PackageMaterial[];
+  Lods?: readonly PackageLod[];
 };
 
 type PackageDescription = {
-  Models?: PackageModel[];
+  Models?: readonly PackageModel[];
 };
 
 type ModelViewerElement = HTMLElement & {
@@ -405,7 +405,7 @@ async function fetchPackageDescription(path: string) {
 
     return (await response.json()) as PackageDescription;
   } catch {
-    return fallbackPackageDescription as PackageDescription;
+    return fallbackPackageDescription as unknown as PackageDescription;
   }
 }
 

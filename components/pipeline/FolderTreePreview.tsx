@@ -13,7 +13,7 @@ type PackageTexture = {
 };
 
 type PackageParameter = {
-  Textures?: PackageTexture[];
+  Textures?: readonly PackageTexture[];
 };
 
 type PackageMaterial = {
@@ -23,11 +23,11 @@ type PackageMaterial = {
 
 type PackageModel = {
   Filename?: string;
-  Materials?: PackageMaterial[];
+  Materials?: readonly PackageMaterial[];
 };
 
 type PackageDescription = {
-  Models?: PackageModel[];
+  Models?: readonly PackageModel[];
 };
 
 function getNodeIcon(node: PipelineTreeNode) {
@@ -249,7 +249,7 @@ export function FolderTreePreview() {
       } catch {
         if (isMounted) {
           setFolderTree(
-            buildDynamicFolderTree(fallbackPackageDescription as PackageDescription),
+            buildDynamicFolderTree(fallbackPackageDescription as unknown as PackageDescription),
           );
         }
       }
