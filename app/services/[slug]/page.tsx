@@ -100,7 +100,7 @@ function ServiceContentSection({
   const textFirst = index % 2 === 1;
 
   return (
-    <article className="border-b border-zinc-900 px-6 py-24">
+    <article className="border-b border-zinc-900 px-5 py-16 md:px-6 md:py-24">
       <div
         className={`mx-auto grid max-w-[92rem] gap-10 lg:items-center ${
           textFirst
@@ -147,7 +147,7 @@ function ServiceContentSection({
 
 function PipelineViewerBase() {
   return (
-    <section className="border-b border-zinc-900 px-6 py-24">
+    <section className="border-b border-zinc-900 px-5 py-16 md:px-6 md:py-24">
       <div className="mx-auto max-w-[92rem]">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
@@ -276,9 +276,9 @@ export default async function ServicePage(props: ServicePageProps) {
         nextLabel={navigation.nextLabel}
       />
 
-      <section className="px-4 pb-10 pt-32 md:px-8">
+      <section className="px-4 pb-8 pt-24 md:px-8 md:pb-10 md:pt-32">
         <div className="mx-auto max-w-[118rem]">
-          <div className="relative min-h-[76vh] overflow-hidden rounded-[2rem] bg-zinc-950 shadow-2xl shadow-black/50 md:min-h-[82vh]">
+          <div className="relative h-[58vh] overflow-hidden rounded-[1.5rem] bg-zinc-950 shadow-2xl shadow-black/50 sm:h-[66vh] md:min-h-[82vh] md:rounded-[2rem]">
             <video
               className="absolute inset-0 h-full w-full object-cover opacity-95"
               src={service.heroVideo}
@@ -292,7 +292,7 @@ export default async function ServicePage(props: ServicePageProps) {
             <div className="absolute inset-0 rounded-[2rem] ring-1 ring-white/10" />
             <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/75 to-transparent" />
 
-            <div className="absolute bottom-8 left-8 z-10 md:bottom-12 md:left-12">
+            <div className="absolute bottom-6 left-6 z-10 md:bottom-12 md:left-12">
               <Link
                 href="/#services"
                 className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 transition hover:text-white"
@@ -308,17 +308,17 @@ export default async function ServicePage(props: ServicePageProps) {
         </div>
       </section>
 
-      <section className="border-b border-zinc-900 px-6 py-20 text-center">
+      <section className="border-b border-zinc-900 px-5 py-16 text-center md:px-6 md:py-20">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
             Service Reel
           </p>
 
-          <h1 className="mx-auto mt-5 max-w-5xl text-6xl font-black leading-none tracking-[-0.075em] md:text-8xl">
+          <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-black leading-none tracking-[-0.075em] md:text-8xl">
             {service.title}
           </h1>
 
-          <p className="mx-auto mt-10 max-w-4xl text-lg leading-relaxed text-zinc-300 md:text-2xl">
+          <p className="mx-auto mt-7 max-w-4xl text-base leading-relaxed text-zinc-300 md:mt-10 md:text-2xl">
             {service.description}
           </p>
 

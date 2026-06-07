@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { services } from "@/data/projects";
+
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
-  { label: "Services", href: "/#services" },
   { label: "Portfolio", href: "/#reel" },
   { label: "Experience", href: "/#experience" },
   { label: "Contact", href: "mailto:13.ms.emanuel@gmail.com" },
@@ -20,6 +21,7 @@ export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(true);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -47,6 +49,10 @@ export function Navbar() {
     };
   }, [isMenuOpen]);
 
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
+
   return (
     <>
       <header
@@ -55,7 +61,7 @@ export function Navbar() {
         }`}
       >
         <nav
-          className={`mx-auto flex h-[4.75rem] w-full items-center justify-between px-5 transition md:h-[6.25rem] md:px-12 ${
+          className={`mx-auto flex h-[4.5rem] w-full items-center justify-between px-5 transition md:h-[6.25rem] md:px-12 ${
             isScrolled || isMenuOpen
               ? "border-b border-white/10 bg-[#141414]/92 shadow-2xl shadow-black/40 backdrop-blur-xl"
               : "bg-[#141414]"
@@ -63,14 +69,49 @@ export function Navbar() {
         >
           <Link
             href="/"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
             className="text-2xl font-black uppercase tracking-[-0.06em] text-white transition hover:text-[#45C7C5] md:text-3xl"
           >
             EMANUEL
           </Link>
 
-          <div className="hidden items-center gap-12 xl:flex">
-            {navItems.map((item) =>
+          <div className="hidden items-center gap-10 xl:flex">
+            <Link
+              href="/"
+              className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+            >
+              Home
+            </Link>
+
+            <div className="group relative">
+              <Link
+                href="/#services"
+                className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+              >
+                Services
+              </Link>
+
+              <div className="pointer-events-none absolute left-1/2 top-full w-80 -translate-x-1/2 pt-6 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+                <div className="rounded-3xl border border-white/10 bg-[#141414]/95 p-3 shadow-2xl shadow-black/60 backdrop-blur-xl">
+                  {services.map((service) => (
+                    <Link
+                      key={service.slug}
+                      href={service.href}
+                      className="block rounded-2xl px-4 py-3 transition hover:bg-white/5"
+                    >
+                      <p className="text-sm font-black uppercase tracking-[0.08em] text-white">
+                        {service.shortTitle}
+                      </p>
+                      <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+                        {service.description}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {navItems.slice(1).map((item) =>
               isExternalLink(item.href) ? (
                 <a
                   key={item.label}
@@ -94,7 +135,7 @@ export function Navbar() {
           <div className="flex items-center gap-5 md:gap-7">
             <Link
               href="/#services"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
               className="hidden text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white md:block xl:hidden"
             >
               Services
@@ -123,8 +164,8 @@ export function Navbar() {
 
             <Link
               href="/#services"
-              onClick={() => setIsMenuOpen(false)}
-              className="text-2xl font-black leading-none text-zinc-300 transition hover:text-[#45C7C5]"
+              onClick={closeMenu}
+              className="hidden text-2xl font-black leading-none text-zinc-300 transition hover:text-[#45C7C5] sm:block"
               aria-label="View work"
             >
               ⌕
@@ -137,25 +178,76 @@ export function Navbar() {
         className={`fixed inset-0 z-40 bg-black/80 backdrop-blur-xl transition xl:hidden ${
           isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
-        onClick={() => setIsMenuOpen(false)}
+        onClick={closeMenu}
       />
 
       <aside
-        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-sm border-l border-white/10 bg-[#141414] px-6 pb-8 pt-28 shadow-2xl shadow-black/60 transition-transform duration-300 xl:hidden ${
+        className={`fixed right-0 top-0 z-50 h-screen w-full max-w-[26rem] overflow-y-auto border-l border-white/10 bg-[#141414] px-5 pb-8 pt-24 shadow-2xl shadow-black/60 transition-transform duration-300 xl:hidden ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
-          Navigation
-        </p>
+        <div className="flex items-center justify-between gap-4">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+            Navigation
+          </p>
 
-        <div className="mt-8 flex flex-col gap-2">
-          {navItems.map((item) =>
+          <button
+            type="button"
+            onClick={closeMenu}
+            className="rounded-full border border-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-400 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          >
+            Close
+          </button>
+        </div>
+
+        <div className="mt-7 flex flex-col gap-2">
+          <Link
+            href="/"
+            onClick={closeMenu}
+            className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          >
+            Home
+          </Link>
+
+          <div className="rounded-2xl border border-white/10">
+            <button
+              type="button"
+              onClick={() => setIsServicesOpen((current) => !current)}
+              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-lg font-black uppercase tracking-[-0.03em] text-white"
+            >
+              <span>Services</span>
+              <span className="text-sm text-[#45C7C5]">
+                {isServicesOpen ? "−" : "+"}
+              </span>
+            </button>
+
+            {isServicesOpen && (
+              <div className="border-t border-white/10 p-2">
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={service.href}
+                    onClick={closeMenu}
+                    className="block rounded-xl px-4 py-3 transition hover:bg-white/5"
+                  >
+                    <p className="text-sm font-black uppercase tracking-[0.08em] text-[#45C7C5]">
+                      {service.shortTitle}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+                      {service.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {navItems.slice(1).map((item) =>
             isExternalLink(item.href) ? (
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
                 className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
               >
                 {item.label}
@@ -164,7 +256,7 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
                 className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
               >
                 {item.label}

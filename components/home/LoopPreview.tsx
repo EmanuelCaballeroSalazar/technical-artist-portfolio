@@ -12,7 +12,7 @@ export function LoopPreview({
   if (!src) {
     return (
       <div
-        className={`flex min-h-[700px] w-full items-center justify-center rounded-[2rem] border border-dashed border-zinc-800 bg-zinc-950 text-sm text-zinc-600 ${className}`}
+        className={`flex min-h-[18rem] w-full items-center justify-center rounded-[1.5rem] border border-dashed border-zinc-800 bg-zinc-950 px-6 text-center text-sm text-zinc-600 md:min-h-[700px] md:rounded-[2rem] ${className}`}
       >
         Loop preview coming soon
       </div>
@@ -21,7 +21,7 @@ export function LoopPreview({
 
   return (
     <div
-      className={`overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 ${className}`}
+      className={`overflow-hidden rounded-[1.5rem] border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 md:rounded-[2rem] ${className}`}
     >
       <video
         className="w-full bg-black object-cover"
