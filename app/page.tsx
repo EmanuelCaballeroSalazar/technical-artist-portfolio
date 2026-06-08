@@ -11,8 +11,8 @@ export default function Home() {
       <Navbar />
 
       <section id="reel" className="px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-32">
-        <div className="mx-auto max-w-[118rem]">
-          <div className="relative h-[52vh] overflow-hidden rounded-[1.5rem] bg-zinc-950 shadow-2xl shadow-black/50 sm:h-[62vh] md:min-h-[84vh] md:rounded-[2rem]">
+        <div className="mx-auto max-w-[104rem]">
+          <div className="relative aspect-video overflow-hidden rounded-[1.5rem] bg-zinc-950 shadow-2xl shadow-black/50 md:rounded-[2rem]">
             <ControlledVideo
               src={heroVideo}
               title="Technical Artist portfolio overview reel"
@@ -20,8 +20,8 @@ export default function Home() {
               videoClassName="h-full w-full object-cover opacity-95"
             />
 
-            <div className="absolute inset-0 rounded-[2rem] ring-1 ring-white/10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-white/10" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/5" />
           </div>
         </div>
       </section>
