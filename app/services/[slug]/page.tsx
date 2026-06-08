@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { LoopPreview } from "@/components/home/LoopPreview";
 import { Navbar } from "@/components/navigation/Navbar";
+import { ControlledVideo } from "@/components/video/ControlledVideo";
 import {
   FolderTreePreview,
   GlbViewerPlaceholder,
@@ -122,6 +123,7 @@ function ServiceContentSection({
             src={section.mediaLoop}
             title={section.title}
             className="rounded-[2rem] [&_video]:aspect-video [&_video]:object-cover"
+            withControls
           />
         </div>
 
@@ -288,14 +290,11 @@ export default async function ServicePage(props: ServicePageProps) {
       <section className="px-4 pb-8 pt-24 md:px-8 md:pb-10 md:pt-32">
         <div className="mx-auto max-w-[118rem]">
           <div className="relative h-[58vh] overflow-hidden rounded-[1.5rem] bg-zinc-950 shadow-2xl shadow-black/50 sm:h-[66vh] md:min-h-[82vh] md:rounded-[2rem]">
-            <video
-              className="absolute inset-0 h-full w-full object-cover opacity-95"
+            <ControlledVideo
               src={service.heroVideo}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
+              title={`${service.title} service reel`}
+              className="absolute inset-0"
+              videoClassName="h-full w-full object-cover opacity-95"
             />
 
             <div className="absolute inset-0 rounded-[2rem] ring-1 ring-white/10" />

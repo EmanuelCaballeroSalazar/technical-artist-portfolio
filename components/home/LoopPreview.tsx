@@ -1,13 +1,17 @@
+import { ControlledVideo } from "@/components/video/ControlledVideo";
+
 type LoopPreviewProps = {
   src?: string;
   title: string;
   className?: string;
+  withControls?: boolean;
 };
 
 export function LoopPreview({
   src,
   title,
   className = "",
+  withControls = false,
 }: LoopPreviewProps) {
   if (!src) {
     return (
@@ -23,16 +27,25 @@ export function LoopPreview({
     <div
       className={`overflow-hidden rounded-[1.5rem] border border-zinc-800 bg-zinc-950 shadow-2xl shadow-black/40 md:rounded-[2rem] ${className}`}
     >
-      <video
-        className="w-full bg-black object-cover"
-        src={src}
-        title={title}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-      />
+      {withControls ? (
+        <ControlledVideo
+          src={src}
+          title={title}
+          className="w-full"
+          videoClassName="w-full bg-black object-cover"
+        />
+      ) : (
+        <video
+          className="w-full bg-black object-cover"
+          src={src}
+          title={title}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      )}
     </div>
   );
 }
