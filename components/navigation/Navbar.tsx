@@ -92,20 +92,20 @@ export function Navbar() {
                 Services
               </Link>
 
-              <div className="pointer-events-none absolute left-1/2 top-full w-80 -translate-x-1/2 pt-6 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
-                <div className="rounded-3xl border border-white/10 bg-[#141414]/95 p-3 shadow-2xl shadow-black/60 backdrop-blur-xl">
+              <div className="pointer-events-none absolute left-1/2 top-full w-72 -translate-x-1/2 pt-6 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+                <div className="rounded-3xl border border-white/10 bg-[#141414]/95 p-2 shadow-2xl shadow-black/60 backdrop-blur-xl">
                   {services.map((service) => (
                     <Link
                       key={service.slug}
                       href={service.href}
-                      className="block rounded-2xl px-4 py-3 transition hover:bg-white/5"
+                      className="group/service flex items-center justify-between gap-4 rounded-2xl px-4 py-3 transition hover:bg-white/5"
                     >
-                      <p className="text-sm font-black uppercase tracking-[0.08em] text-[#FF9AA2]">
+                      <span className="text-sm font-black uppercase tracking-[0.08em] text-zinc-200 transition group-hover/service:text-[#FF4D5A]">
                         {service.shortTitle}
-                      </p>
-                      <p className="mt-1 text-xs leading-relaxed text-zinc-500">
-                        {service.description}
-                      </p>
+                      </span>
+                      <span className="text-xs font-black text-[#FF4D5A] opacity-0 transition group-hover/service:opacity-100">
+                        →
+                      </span>
                     </Link>
                   ))}
                 </div>
@@ -229,14 +229,14 @@ export function Navbar() {
                     key={service.slug}
                     href={service.href}
                     onClick={closeMenu}
-                    className="block rounded-xl px-4 py-3 transition hover:bg-white/5"
+                    className="group/service flex items-center justify-between gap-4 rounded-xl px-4 py-3 transition hover:bg-white/5"
                   >
-                    <p className="text-sm font-black uppercase tracking-[0.08em] text-[#FF4D5A]">
+                    <span className="text-sm font-black uppercase tracking-[0.08em] text-zinc-200 transition group-hover/service:text-[#FF4D5A]">
                       {service.shortTitle}
-                    </p>
-                    <p className="mt-1 text-xs leading-relaxed text-zinc-500">
-                      {service.description}
-                    </p>
+                    </span>
+                    <span className="text-xs font-black text-[#FF4D5A] opacity-0 transition group-hover/service:opacity-100">
+                      →
+                    </span>
                   </Link>
                 ))}
               </div>
