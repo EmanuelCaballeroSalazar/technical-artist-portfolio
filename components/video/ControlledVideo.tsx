@@ -128,7 +128,7 @@ export function ControlledVideo({
     <div ref={containerRef} className={`group relative overflow-hidden ${className}`}>
       <video
         ref={videoRef}
-        className={videoClassName}
+        className={`${videoClassName} cursor-pointer`}
         src={src}
         title={title}
         autoPlay={autoPlay}
@@ -138,6 +138,7 @@ export function ControlledVideo({
         preload={preload}
         onLoadedMetadata={updateDuration}
         onTimeUpdate={updateCurrentTime}
+        onClick={togglePlayback}
       />
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-4 pb-4 pt-16 opacity-100 transition md:opacity-0 md:group-hover:opacity-100">
