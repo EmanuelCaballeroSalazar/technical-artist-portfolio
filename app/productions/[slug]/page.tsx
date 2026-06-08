@@ -24,6 +24,15 @@ type ProductionSection = {
   videos?: SectionVideo[];
 };
 
+
+export function generateStaticParams() {
+  return productionProjects.map((production) => ({
+    slug: production.slug,
+  }));
+}
+
+export const dynamicParams = false;
+
 function getYoutubeUrl(section: ProductionSection) {
   if (typeof section.youtube === "string") {
     return section.youtube;
@@ -85,7 +94,7 @@ export default async function ProductionPage(props: ProductionPageProps) {
             ← Back to Selected Productions
           </Link>
 
-          <p className="mt-16 text-sm uppercase tracking-[0.3em] text-teal-300/70">
+          <p className="mt-16 text-sm uppercase tracking-[0.3em] text-[#FF4D5A]/70">
             {production.category}
           </p>
 
@@ -184,17 +193,17 @@ export default async function ProductionPage(props: ProductionPageProps) {
               <a
                 key={section.slug}
                 href={`#${section.slug}`}
-                className="group rounded-3xl border border-zinc-800 bg-black p-6 transition hover:-translate-y-1 hover:border-teal-300/70"
+                className="group rounded-3xl border border-zinc-800 bg-black p-6 transition hover:-translate-y-1 hover:border-[#FF4D5A]/70"
               >
                 <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
                   Section {String(index + 1).padStart(2, "0")}
                 </p>
 
-                <h3 className="mt-4 text-xl font-bold group-hover:text-teal-200">
+                <h3 className="mt-4 text-xl font-bold group-hover:text-[#8AF5E0]">
                   {section.title}
                 </h3>
 
-                <p className="mt-2 text-sm text-teal-300/70">{section.label}</p>
+                <p className="mt-2 text-sm text-[#FF4D5A]/70">{section.label}</p>
 
                 <p className="mt-4 text-sm leading-relaxed text-zinc-400">
                   {section.description}
@@ -235,7 +244,7 @@ export default async function ProductionPage(props: ProductionPageProps) {
 
               <div className="mt-8 grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
                 <div>
-                  <p className="text-sm text-teal-300/70">{section.label}</p>
+                  <p className="text-sm text-[#FF4D5A]/70">{section.label}</p>
 
                   <h3 className="mt-3 text-4xl font-bold">{section.title}</h3>
 

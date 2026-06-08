@@ -26,7 +26,9 @@ async function fetchJsonWithFallback(path: string) {
 }
 
 export function PackageDescriptionPreview() {
-  const [jsonData, setJsonData] = useState<object | null>(null);
+  const [jsonData, setJsonData] = useState<object | null>(
+    fallbackPackageDescription,
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -55,7 +57,7 @@ export function PackageDescriptionPreview() {
   return (
     <div className="overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-950/80">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 px-6 py-4">
-        <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#45C7C5]">
+        <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#FF4D5A]">
           Package Description
         </p>
 

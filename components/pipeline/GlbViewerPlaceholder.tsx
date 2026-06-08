@@ -263,7 +263,7 @@ function TexturePanel({ textures }: { textures: TextureInfo[] }) {
     <div className="border-t border-zinc-800 bg-zinc-950/80 p-5">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#45C7C5]">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#FF4D5A]">
             Texture Inputs
           </p>
 
@@ -294,7 +294,7 @@ function TexturePanel({ textures }: { textures: TextureInfo[] }) {
                   className="flex items-center justify-between gap-3 rounded-xl bg-zinc-950 px-3 py-2"
                 >
                   <span className="text-xs text-zinc-400">{texture.slot}</span>
-                  <span className="font-mono text-xs text-[#45C7C5]">
+                  <span className="font-mono text-xs text-[#FF4D5A]">
                     {texture.channels}
                   </span>
                 </div>
@@ -318,7 +318,7 @@ function PbrPanel({ textures }: { textures: TextureInfo[] }) {
 
   return (
     <div className="border-t border-zinc-800 bg-zinc-950/80 p-5">
-      <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#45C7C5]">
+      <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#FF4D5A]">
         PBR Channel Mapping
       </p>
 
@@ -339,7 +339,7 @@ function PbrPanel({ textures }: { textures: TextureInfo[] }) {
                 {texture?.filename ?? "Not assigned"}
               </p>
 
-              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[#45C7C5]">
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[#FF4D5A]">
                 Channels: {texture?.channels ?? "-"}
               </p>
             </article>
@@ -368,7 +368,7 @@ function StatisticsPanel({
 
   return (
     <div className="border-t border-zinc-800 bg-zinc-950/80 p-5">
-      <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#45C7C5]">
+      <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#FF4D5A]">
         Pipeline Statistics
       </p>
 
@@ -400,7 +400,7 @@ function ModeTabs({
   onModeClick: (mode: ViewerMode) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible md:pb-0">
       {viewerModes.map((mode) => {
         const isActive = activeMode === mode.id;
         const label =
@@ -411,10 +411,10 @@ function ModeTabs({
             key={mode.id}
             type="button"
             onClick={() => onModeClick(mode.id)}
-            className={`rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+            className={`shrink-0 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
               isActive
-                ? "border-[#45C7C5] bg-[#45C7C5] text-black"
-                : "border-zinc-700 text-zinc-300 hover:border-[#45C7C5] hover:text-[#45C7C5]"
+                ? "border-[#FF4D5A] bg-[#FF4D5A] text-black"
+                : "border-zinc-700 text-zinc-300 hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
             }`}
           >
             {label}
@@ -433,8 +433,8 @@ function ModeInfoCard({
   packageDescription: PackageDescription | null;
 }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/75 p-4 backdrop-blur-xl">
-      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#45C7C5]">
+    <div className="rounded-2xl border border-[#FF4D5A]/20 bg-black/80 p-4 shadow-[0_0_30px_rgba(255,77,90,0.08)] backdrop-blur-xl">
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#FF4D5A]">
         {currentMode.title}
       </p>
 
@@ -492,7 +492,7 @@ export function GlbViewerPlaceholder() {
   const [activeMode, setActiveMode] = useState<ViewerMode>("asset");
   const [isAnimationPlaying, setIsAnimationPlaying] = useState(true);
   const [packageDescription, setPackageDescription] =
-    useState<PackageDescription | null>(null);
+    useState<PackageDescription | null>(fallbackPackageDescription);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -543,18 +543,18 @@ export function GlbViewerPlaceholder() {
   }
 
   return (
-    <div className="rounded-[2rem] border border-zinc-800 bg-zinc-950/80 p-6">
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+    <div className="rounded-[1.5rem] border border-[#FF4D5A]/20 bg-zinc-950/80 p-3 shadow-[0_0_42px_rgba(255,77,90,0.08)] md:rounded-[2rem] md:p-6">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4 md:mb-6">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#45C7C5]">
-            GLB Pipeline Inspector
+          <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#FF4D5A]">
+            AAA Asset Review
           </p>
 
           <h3 className="mt-3 text-3xl font-black tracking-[-0.04em] text-white md:text-5xl">
-            Interactive Asset Review
+            Production Asset Review
           </h3>
 
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
+          <p className="mt-3 hidden max-w-2xl text-sm leading-relaxed text-zinc-400 sm:block">
             Asset source:{" "}
             <span className="font-mono text-zinc-200">
               {glbPath || "Waiting for package_description.json"}
@@ -590,10 +590,10 @@ export function GlbViewerPlaceholder() {
               interaction-prompt="none"
               camera-orbit={currentMode.cameraOrbit}
               field-of-view={currentMode.fieldOfView}
-              className="h-[70svh] min-h-[28rem] w-full sm:h-[32rem] md:h-[34rem]"
+              className="h-[66svh] min-h-[24rem] w-full sm:h-[32rem] md:h-[34rem]"
             />
           ) : (
-            <div className="flex h-[70svh] min-h-[28rem] items-center justify-center p-8 text-center text-zinc-500 sm:h-[32rem] md:h-[34rem]">
+            <div className="flex h-[66svh] min-h-[24rem] items-center justify-center p-8 text-center text-zinc-500 sm:h-[32rem] md:h-[34rem]">
               {errorMessage || "Loading package_description.json..."}
             </div>
           )}
@@ -606,7 +606,7 @@ export function GlbViewerPlaceholder() {
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 p-4 md:hidden">
+        <div className="border-t border-[#FF4D5A]/15 p-3 md:hidden">
           <ModeTabs
             activeMode={activeMode}
             isAnimationPlaying={isAnimationPlaying}
@@ -614,7 +614,7 @@ export function GlbViewerPlaceholder() {
           />
         </div>
 
-        <div className="border-t border-zinc-800 p-4 md:hidden">
+        <div className="border-t border-[#FF4D5A]/15 p-3 md:hidden">
           <ModeInfoCard
             currentMode={currentMode}
             packageDescription={packageDescription}
@@ -629,7 +629,7 @@ export function GlbViewerPlaceholder() {
           <StatisticsPanel packageDescription={packageDescription} />
         )}
 
-        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-800 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#FF4D5A]/15 px-4 py-4 md:px-5">
           <p className="text-xs uppercase tracking-[0.22em] text-zinc-500">
             {glbName}
           </p>
@@ -637,9 +637,9 @@ export function GlbViewerPlaceholder() {
           {glbPath && (
             <a
               href={glbPath}
-              className="rounded-full border border-zinc-700 px-5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-300 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+              className="rounded-full border border-zinc-700 px-5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-300 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
             >
-              Open GLB File
+              Open Asset File
             </a>
           )}
         </div>

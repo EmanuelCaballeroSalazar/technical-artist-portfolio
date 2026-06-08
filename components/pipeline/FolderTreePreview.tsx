@@ -187,10 +187,10 @@ function TreeItem({
   return (
     <details open={node.defaultOpen} className="group">
       <summary
-        className="flex cursor-pointer list-none items-center gap-3 py-1.5 text-sm font-semibold text-white transition hover:text-[#45C7C5]"
+        className="flex cursor-pointer list-none items-center gap-3 py-1.5 text-sm font-semibold text-white transition hover:text-[#FF4D5A]"
         style={{ paddingLeft: `${depth * 1.25}rem` }}
       >
-        <span className="text-xs text-[#45C7C5] transition group-open:rotate-90">
+        <span className="text-xs text-[#FF4D5A] transition group-open:rotate-90">
           ▶
         </span>
         <span>{icon}</span>
@@ -211,13 +211,9 @@ function TreeItem({
 }
 
 export function FolderTreePreview() {
-  const [folderTree, setFolderTree] = useState<PipelineTreeNode[]>([
-    {
-      name: "Loading package_description",
-      defaultOpen: true,
-      children: [{ name: "package_description.json" }],
-    },
-  ]);
+  const [folderTree, setFolderTree] = useState<PipelineTreeNode[]>(
+    buildDynamicFolderTree(fallbackPackageDescription),
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -265,7 +261,7 @@ export function FolderTreePreview() {
   return (
     <div className="rounded-[2rem] border border-zinc-800 bg-zinc-950/80 p-8">
       <div className="mb-6 flex items-center justify-between border-b border-zinc-800 pb-4">
-        <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#45C7C5]">
+        <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#FF4D5A]">
           Dynamic Folders
         </p>
 

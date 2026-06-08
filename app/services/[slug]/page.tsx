@@ -22,6 +22,15 @@ type ServiceSection = {
   points?: string[];
 };
 
+
+export function generateStaticParams() {
+  return servicePages.map((service) => ({
+    slug: service.slug,
+  }));
+}
+
+export const dynamicParams = false;
+
 function getServiceNavigation(slug: string) {
   const currentIndex = services.findIndex((item) => item.slug === slug);
   const previousService = currentIndex > 0 ? services[currentIndex - 1] : null;
@@ -55,7 +64,7 @@ function ServiceSideNavigation({
         href={previousHref}
         aria-label={`Previous service: ${previousLabel}`}
         title={previousLabel}
-        className="fixed left-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#45C7C5] hover:bg-[#45C7C5] hover:text-black xl:flex"
+        className="fixed left-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#FF4D5A] hover:bg-[#FF4D5A] hover:text-black xl:flex"
       >
         ←
       </Link>
@@ -64,7 +73,7 @@ function ServiceSideNavigation({
         href={nextHref}
         aria-label={`Next service: ${nextLabel}`}
         title={nextLabel}
-        className="fixed right-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#45C7C5] hover:bg-[#45C7C5] hover:text-black xl:flex"
+        className="fixed right-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#FF4D5A] hover:bg-[#FF4D5A] hover:text-black xl:flex"
       >
         →
       </Link>
@@ -73,7 +82,7 @@ function ServiceSideNavigation({
         <Link
           href={previousHref}
           title={previousLabel}
-          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
         >
           Prev
         </Link>
@@ -81,7 +90,7 @@ function ServiceSideNavigation({
         <Link
           href={nextHref}
           title={nextLabel}
-          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
         >
           Next
         </Link>
@@ -117,7 +126,7 @@ function ServiceContentSection({
         </div>
 
         <div className={textFirst ? "lg:order-1" : ""}>
-          <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#45C7C5]">
+          <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#FF4D5A]">
             {section.label}
           </p>
 
@@ -133,7 +142,7 @@ function ServiceContentSection({
             <ul className="mt-7 space-y-3 text-sm text-zinc-300 md:text-base">
               {section.points.map((point) => (
                 <li key={point} className="flex gap-3 leading-relaxed">
-                  <span className="mt-1 text-[#45C7C5]">✓</span>
+                  <span className="mt-1 text-[#FF4D5A]">✓</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -150,17 +159,17 @@ function PipelineViewerBase() {
     <section className="border-b border-zinc-900 px-5 py-16 md:px-6 md:py-24">
       <div className="mx-auto max-w-[92rem]">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#FF4D5A]">
             Pipeline Output
           </p>
 
           <h2 className="mt-5 text-5xl font-black leading-none tracking-[-0.06em] md:text-8xl">
-            GLB Viewer
+            Production Asset Review
           </h2>
 
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-zinc-400">
-            A compact pipeline presentation area prepared for dynamic folders,
-            package description review and an interactive GLB asset viewer.
+            A production-facing review area for dynamic folders, package
+            description data and interactive GLB asset validation.
           </p>
         </div>
 
@@ -168,7 +177,7 @@ function PipelineViewerBase() {
           <FolderTreePreview />
 
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#45C7C5]">
+            <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#FF4D5A]">
               Dynamic Folders
             </p>
 
@@ -186,8 +195,8 @@ function PipelineViewerBase() {
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#45C7C5]">
-              Script Dynamic
+            <p className="text-sm font-bold uppercase tracking-[0.32em] text-[#FF4D5A]">
+              Package Data
             </p>
 
             <h3 className="mt-5 text-4xl font-black leading-none tracking-[-0.05em] md:text-6xl">
@@ -216,7 +225,7 @@ function ContactBlock() {
   return (
     <section id="contact" className="px-6 py-28 text-center">
       <div className="mx-auto max-w-4xl">
-        <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+        <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#FF4D5A]">
           Contact
         </p>
 
@@ -231,7 +240,7 @@ function ContactBlock() {
 
         <a
           href={`mailto:${profile.email}`}
-          className="mt-10 inline-block rounded-full bg-[#45C7C5] px-9 py-4 text-sm font-black uppercase tracking-[0.16em] text-black transition hover:scale-105 hover:bg-white"
+          className="mt-10 inline-block rounded-full bg-[#FF4D5A] px-9 py-4 text-sm font-black uppercase tracking-[0.16em] text-black transition hover:scale-105 hover:bg-white"
         >
           Contact Me
         </a>
@@ -300,7 +309,7 @@ export default async function ServicePage(props: ServicePageProps) {
                 ← Back to Services
               </Link>
 
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.45em] text-[#45C7C5]">
+              <p className="mt-5 text-xs font-bold uppercase tracking-[0.45em] text-[#FF4D5A]">
                 {service.eyebrow}
               </p>
             </div>
@@ -310,7 +319,7 @@ export default async function ServicePage(props: ServicePageProps) {
 
       <section className="border-b border-zinc-900 px-5 py-16 text-center md:px-6 md:py-20">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#FF4D5A]">
             Service Reel
           </p>
 

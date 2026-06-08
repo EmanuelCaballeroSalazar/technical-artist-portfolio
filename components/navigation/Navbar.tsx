@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { services } from "@/data/projects";
+import { profile } from "@/data/profile";
 
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
   { label: "Portfolio", href: "/#reel" },
   { label: "Experience", href: "/#experience" },
-  { label: "Contact", href: "mailto:13.ms.emanuel@gmail.com" },
+  { label: "Contact", href: `mailto:${profile.email}` },
 ];
 
 function isExternalLink(href: string) {
@@ -70,7 +71,7 @@ export function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
-            className="text-2xl font-black uppercase tracking-[-0.06em] text-white transition hover:text-[#45C7C5] md:text-3xl"
+            className="brand-gradient-text text-2xl font-black uppercase tracking-[-0.06em] transition md:text-3xl"
           >
             EMANUEL
           </Link>
@@ -78,7 +79,7 @@ export function Navbar() {
           <div className="hidden items-center gap-10 xl:flex">
             <Link
               href="/"
-              className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+              className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-[#FF4D5A]"
             >
               Home
             </Link>
@@ -86,7 +87,7 @@ export function Navbar() {
             <div className="group relative">
               <Link
                 href="/#services"
-                className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+                className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-[#FF4D5A]"
               >
                 Services
               </Link>
@@ -99,7 +100,7 @@ export function Navbar() {
                       href={service.href}
                       className="block rounded-2xl px-4 py-3 transition hover:bg-white/5"
                     >
-                      <p className="text-sm font-black uppercase tracking-[0.08em] text-white">
+                      <p className="text-sm font-black uppercase tracking-[0.08em] text-[#FF9AA2]">
                         {service.shortTitle}
                       </p>
                       <p className="mt-1 text-xs leading-relaxed text-zinc-500">
@@ -116,7 +117,7 @@ export function Navbar() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+                  className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-[#FF4D5A]"
                 >
                   {item.label}
                 </a>
@@ -124,7 +125,7 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-white"
+                  className="text-[0.95rem] font-bold uppercase tracking-[0.08em] text-zinc-300 transition hover:text-[#FF4D5A]"
                 >
                   {item.label}
                 </Link>
@@ -149,12 +150,12 @@ export function Navbar() {
               className="group flex h-10 w-12 flex-col justify-center gap-1.5 xl:hidden"
             >
               <span
-                className={`block h-px w-12 bg-zinc-300 transition group-hover:bg-[#45C7C5] ${
+                className={`block h-px w-12 bg-zinc-300 transition group-hover:bg-[#FF4D5A] ${
                   isMenuOpen ? "translate-y-[3.5px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`ml-auto block h-px bg-zinc-300 transition group-hover:bg-[#45C7C5] ${
+                className={`ml-auto block h-px bg-zinc-300 transition group-hover:bg-[#FF4D5A] ${
                   isMenuOpen ? "w-12 -translate-y-[3.5px] -rotate-45" : "w-8"
                 }`}
               />
@@ -165,7 +166,7 @@ export function Navbar() {
             <Link
               href="/#services"
               onClick={closeMenu}
-              className="hidden text-2xl font-black leading-none text-zinc-300 transition hover:text-[#45C7C5] sm:block"
+              className="hidden text-2xl font-black leading-none text-zinc-300 transition hover:text-[#FF4D5A] sm:block"
               aria-label="View work"
             >
               ⌕
@@ -187,14 +188,14 @@ export function Navbar() {
         }`}
       >
         <div className="flex items-center justify-between gap-4">
-          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#FF4D5A]">
             Navigation
           </p>
 
           <button
             type="button"
             onClick={closeMenu}
-            className="rounded-full border border-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-400 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+            className="rounded-full border border-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-zinc-400 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
           >
             Close
           </button>
@@ -204,7 +205,7 @@ export function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
-            className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+            className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
           >
             Home
           </Link>
@@ -216,7 +217,7 @@ export function Navbar() {
               className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-lg font-black uppercase tracking-[-0.03em] text-white"
             >
               <span>Services</span>
-              <span className="text-sm text-[#45C7C5]">
+              <span className="text-sm text-[#FF4D5A]">
                 {isServicesOpen ? "−" : "+"}
               </span>
             </button>
@@ -230,7 +231,7 @@ export function Navbar() {
                     onClick={closeMenu}
                     className="block rounded-xl px-4 py-3 transition hover:bg-white/5"
                   >
-                    <p className="text-sm font-black uppercase tracking-[0.08em] text-[#45C7C5]">
+                    <p className="text-sm font-black uppercase tracking-[0.08em] text-[#FF4D5A]">
                       {service.shortTitle}
                     </p>
                     <p className="mt-1 text-xs leading-relaxed text-zinc-500">
@@ -248,7 +249,7 @@ export function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={closeMenu}
-                className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+                className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
               >
                 {item.label}
               </a>
@@ -257,7 +258,7 @@ export function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={closeMenu}
-                className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+                className="rounded-2xl border border-white/10 px-5 py-4 text-lg font-black uppercase tracking-[-0.03em] text-white transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
               >
                 {item.label}
               </Link>

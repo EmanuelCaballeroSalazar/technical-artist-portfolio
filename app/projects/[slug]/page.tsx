@@ -19,6 +19,18 @@ type CaseStudyWithVideos = {
   videos: CaseStudyVideo[];
 };
 
+
+export function generateStaticParams() {
+  const slugs = new Set([
+    ...productionProjects.map((production) => production.slug),
+    ...projects.map((project) => project.slug),
+  ]);
+
+  return Array.from(slugs).map((slug) => ({ slug }));
+}
+
+export const dynamicParams = false;
+
 function getProductionServiceHref(slug: string) {
   const characterRiggingProjects = new Set([
     "vorkarn-creature-rig",
@@ -74,7 +86,7 @@ function ProjectSideNavigation({
         href={previousHref}
         aria-label={`Previous project: ${previousLabel}`}
         title={previousLabel}
-        className="fixed left-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#45C7C5] hover:bg-[#45C7C5] hover:text-black xl:flex"
+        className="fixed left-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#FF4D5A] hover:bg-[#FF4D5A] hover:text-black xl:flex"
       >
         ←
       </Link>
@@ -83,7 +95,7 @@ function ProjectSideNavigation({
         href={nextHref}
         aria-label={`Next project: ${nextLabel}`}
         title={nextLabel}
-        className="fixed right-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#45C7C5] hover:bg-[#45C7C5] hover:text-black xl:flex"
+        className="fixed right-4 top-1/2 z-40 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/55 text-2xl text-white backdrop-blur-xl transition hover:border-[#FF4D5A] hover:bg-[#FF4D5A] hover:text-black xl:flex"
       >
         →
       </Link>
@@ -91,14 +103,14 @@ function ProjectSideNavigation({
       <nav className="fixed bottom-5 left-1/2 z-40 flex -translate-x-1/2 gap-3 rounded-full border border-white/10 bg-black/70 px-3 py-2 backdrop-blur-xl xl:hidden">
         <Link
           href={previousHref}
-          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
         >
           Prev
         </Link>
 
         <Link
           href={nextHref}
-          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#45C7C5] hover:text-[#45C7C5]"
+          className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-zinc-300 transition hover:border-[#FF4D5A] hover:text-[#FF4D5A]"
         >
           Next
         </Link>
@@ -155,7 +167,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                   ← Back to Home
                 </Link>
 
-                <p className="mt-16 text-sm uppercase tracking-[0.35em] text-[#45C7C5]">
+                <p className="mt-16 text-sm uppercase tracking-[0.35em] text-[#FF4D5A]">
                   {production.category}
                 </p>
 
@@ -204,7 +216,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             <div className="mx-auto max-w-7xl">
               <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
                 <div>
-                  <p className="text-sm uppercase tracking-[0.3em] text-[#45C7C5]/70">
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#FF4D5A]/70">
                     Production Preview
                   </p>
 
@@ -253,7 +265,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                   <Link
                     key={character.slug}
                     href={`/projects/${production.slug}/${character.slug}`}
-                    className="group grid overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-950 transition hover:-translate-y-1 hover:border-[#45C7C5]/70 md:grid-cols-[0.9fr_1.1fr]"
+                    className="group grid overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-950 transition hover:-translate-y-1 hover:border-[#FF4D5A]/70 md:grid-cols-[0.9fr_1.1fr]"
                   >
                     <div className="p-6 md:p-8">
                       <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
@@ -264,7 +276,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                         {character.title}
                       </h3>
 
-                      <p className="mt-2 text-sm text-[#45C7C5]/70">
+                      <p className="mt-2 text-sm text-[#FF4D5A]/70">
                         {character.category}
                       </p>
 
@@ -324,7 +336,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
               ← Back to Home
             </Link>
 
-            <p className="mt-16 text-sm uppercase tracking-[0.3em] text-[#45C7C5]/70">
+            <p className="mt-16 text-sm uppercase tracking-[0.3em] text-[#FF4D5A]/70">
               {production.category}
             </p>
 
@@ -405,7 +417,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 className="scroll-mt-24 rounded-[2rem] border border-zinc-800 bg-zinc-950/80 p-6 md:p-8"
               >
                 <div>
-                  <p className="text-sm uppercase tracking-[0.25em] text-[#45C7C5]/70">
+                  <p className="text-sm uppercase tracking-[0.25em] text-[#FF4D5A]/70">
                     {section.label}
                   </p>
 
@@ -468,7 +480,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             ← Back to Home
           </Link>
 
-          <p className="mt-16 text-sm uppercase tracking-[0.3em] text-[#45C7C5]/70">
+          <p className="mt-16 text-sm uppercase tracking-[0.3em] text-[#FF4D5A]/70">
             {project.category}
           </p>
 
@@ -525,7 +537,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                 <a
                   key={caseStudy.slug}
                   href={caseStudyHref}
-                  className="group rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#45C7C5]/70"
+                  className="group rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#FF4D5A]/70"
                 >
                   <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
                     Case Study {String(index + 1).padStart(2, "0")}
@@ -535,7 +547,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                     {caseStudy.title}
                   </h3>
 
-                  <p className="mt-2 text-sm text-[#45C7C5]/70">
+                  <p className="mt-2 text-sm text-[#FF4D5A]/70">
                     {caseStudy.label}
                   </p>
 
@@ -554,7 +566,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
               <Link
                 key={caseStudy.slug}
                 href={caseStudyHref}
-                className="group rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#45C7C5]/70"
+                className="group rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#FF4D5A]/70"
               >
                 <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
                   Case Study {String(index + 1).padStart(2, "0")}
@@ -564,7 +576,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
                   {caseStudy.title}
                 </h3>
 
-                <p className="mt-2 text-sm text-[#45C7C5]/70">
+                <p className="mt-2 text-sm text-[#FF4D5A]/70">
                   {caseStudy.label}
                 </p>
 
@@ -593,7 +605,7 @@ export default async function ProjectPage(props: ProjectPageProps) {
             >
               <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
                 <div>
-                  <p className="text-sm text-[#45C7C5]/70">{caseStudy.label}</p>
+                  <p className="text-sm text-[#FF4D5A]/70">{caseStudy.label}</p>
                   <h3 className="mt-3 text-4xl font-bold">{caseStudy.title}</h3>
                   <p className="mt-5 leading-relaxed text-zinc-400">
                     {caseStudy.overview}

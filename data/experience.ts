@@ -1,7 +1,7 @@
 export const experience = [
   {
     studio: "Globant Peru SAC",
-    role: "Technical Artist / Pipeline TD",
+    role: "Technical Artist",
     period: "2025 — Present",
     summary:
       "Working on production pipeline workflows, automation and technical art support for scalable asset delivery.",

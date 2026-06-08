@@ -74,7 +74,7 @@ export function MediaRenderer({
   if (glb) {
     return (
       <div className="mt-6 rounded-2xl border border-dashed border-zinc-800 p-6 text-sm text-zinc-600">
-        GLB Viewer placeholder: {glb}
+        Asset review placeholder: {glb}
       </div>
     );
   }

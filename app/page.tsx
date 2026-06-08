@@ -27,20 +27,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-zinc-900 px-5 pb-20 pt-6 md:px-6 md:pb-28 md:pt-8">
+      <section className="brand-hero-panel border-b border-zinc-900 px-5 pb-20 pt-6 md:px-6 md:pb-28 md:pt-8">
         <div className="mx-auto max-w-6xl text-center">
-          <h1 className="text-[4.6rem] font-black uppercase leading-[0.8] tracking-[-0.09em] sm:text-[5.8rem] md:text-[10rem] lg:text-[13rem]">
+          <h1 className="brand-gradient-text brand-heading-glow text-[4.6rem] font-black uppercase leading-[0.8] tracking-[-0.09em] sm:text-[5.8rem] md:text-[10rem] lg:text-[13rem]">
             Emanuel
           </h1>
 
           <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-3 text-xl font-black uppercase tracking-[-0.04em] text-zinc-100 md:gap-x-12 md:text-4xl">
             <span>Character TD</span>
-            <span>Pipeline TD</span>
+            <span className="brand-accent-text">Pipeline TD</span>
             <span>Technical Animator</span>
           </div>
 
           <p className="mx-auto mt-8 max-w-5xl text-xl font-medium leading-tight text-zinc-300 md:text-5xl">
-            Production-ready rigging, technical animation and pipeline development
+            Production-ready <span className="brand-keyword">rigging</span>, <span className="brand-keyword">technical animation</span> and <span className="brand-keyword">pipeline development</span>
             for games, animation and real-time workflows.
           </p>
 
@@ -51,7 +51,7 @@ export default function Home() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="uppercase tracking-[0.2em] transition hover:text-[#45C7C5]"
+                className="uppercase tracking-[0.2em] transition hover:text-[#FF4D5A]"
               >
                 {social.label}
               </a>
@@ -63,11 +63,11 @@ export default function Home() {
       <section id="services" className="border-b border-zinc-900 px-5 py-20 md:px-6 md:py-28">
         <div className="mx-auto max-w-[96rem]">
           <div className="text-center">
-            <p className="text-sm font-bold uppercase tracking-[0.4em] text-[#45C7C5]">
+            <p className="brand-section-label text-sm font-bold">
               Choose a Discipline
             </p>
 
-            <h2 className="mt-5 text-5xl font-black tracking-[-0.065em] md:text-9xl">
+            <h2 className="brand-gradient-text brand-heading-glow mt-5 text-5xl font-black tracking-[-0.065em] md:text-9xl">
               Services
             </h2>
 
@@ -83,7 +83,7 @@ export default function Home() {
               <a
                 key={service.title}
                 href={service.href}
-                className="group relative min-h-[25rem] overflow-hidden rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#45C7C5]/70 hover:shadow-2xl hover:shadow-[#45C7C5]/10 md:min-h-[34rem] md:rounded-[2rem] md:p-8"
+                className="group relative min-h-[25rem] overflow-hidden rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-[#FF4D5A]/70 hover:shadow-2xl hover:shadow-[#FF4D5A]/10 md:min-h-[34rem] md:rounded-[2rem] md:p-8"
               >
                 <video
                   className="absolute inset-0 h-full w-full object-cover opacity-24 transition duration-500 group-hover:scale-105 group-hover:opacity-42"
@@ -108,7 +108,7 @@ export default function Home() {
                     {service.description}
                   </p>
 
-                  <p className="mt-8 text-sm font-bold uppercase tracking-[0.2em] text-[#67D7D5]">
+                  <p className="mt-8 text-sm font-bold uppercase tracking-[0.2em] text-[#FF6B76]">
                     Open Discipline →
                   </p>
                 </div>
@@ -121,11 +121,11 @@ export default function Home() {
       <section id="about" className="border-b border-zinc-900 px-5 py-20 md:px-6 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+            <p className="brand-section-label text-sm font-bold">
               Technical Art Solutions
             </p>
 
-            <h2 className="mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
+            <h2 className="brand-gradient-text brand-heading-glow mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
               What I Offer
             </h2>
           </div>
@@ -151,29 +151,29 @@ export default function Home() {
             </p>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+              <div className="brand-card-glow rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5 transition hover:border-[#FF4D5A]/60">
                 <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
                   01
                 </p>
-                <p className="mt-3 text-xl font-black text-white">
+                <p className="mt-3 text-xl font-black text-white transition group-hover:text-[#FF9AA2]">
                   Pipeline Setup & Tooling
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+              <div className="brand-card-glow rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5 transition hover:border-[#FF4D5A]/60">
                 <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
                   02
                 </p>
-                <p className="mt-3 text-xl font-black text-white">
+                <p className="mt-3 text-xl font-black text-white transition group-hover:text-[#FF9AA2]">
                   Character Rigging & Skinning
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5">
+              <div className="brand-card-glow rounded-[1.5rem] border border-zinc-800 bg-zinc-950 p-5 transition hover:border-[#FF4D5A]/60">
                 <p className="text-sm uppercase tracking-[0.25em] text-zinc-500">
                   03
                 </p>
-                <p className="mt-3 text-xl font-black text-white">
+                <p className="mt-3 text-xl font-black text-white transition group-hover:text-[#FF9AA2]">
                   Technical Animation
                 </p>
               </div>
@@ -184,11 +184,11 @@ export default function Home() {
 
       <section id="experience" className="border-t border-zinc-900 px-5 py-20 md:px-6 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#45C7C5]">
+          <p className="brand-section-label text-sm font-bold">
             Experience
           </p>
 
-          <h2 className="mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
+          <h2 className="brand-gradient-text brand-heading-glow mt-4 text-5xl font-black tracking-[-0.05em] md:text-7xl">
             Production background
           </h2>
 
@@ -196,11 +196,11 @@ export default function Home() {
             {experience.map((job) => (
               <article
                 key={`${job.studio}-${job.period}`}
-                className="rounded-3xl border border-zinc-800 bg-zinc-950 p-6"
+                className="brand-card-glow rounded-3xl border border-zinc-800 bg-zinc-950 p-6 transition hover:border-[#FF4D5A]/50"
               >
                 <p className="text-sm text-zinc-500">{job.period}</p>
                 <h3 className="mt-3 text-2xl font-bold">{job.studio}</h3>
-                <p className="mt-2 text-[#45C7C5]">{job.role}</p>
+                <p className="mt-2 text-[#FF4D5A]">{job.role}</p>
                 <p className="mt-4 leading-relaxed text-zinc-400">
                   {job.summary}
                 </p>
